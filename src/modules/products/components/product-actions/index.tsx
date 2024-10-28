@@ -20,18 +20,16 @@ type ProductActionsProps = {
   disabled?: boolean
 }
 
-const optionsAsKeymap = (variantOptions: HttpTypes.StoreProductVariant["options"]) => {
+const optionsAsKeymap = (
+  variantOptions: HttpTypes.StoreProductVariant["options"]
+) => {
   return variantOptions?.reduce((acc: Record<string, string>, varopt: any) => {
     acc[varopt.option_id] = varopt.value
     return acc
   }, {})
 }
 
-export default function ProductActions({
-  product,
-  region,
-  disabled,
-}: ProductActionsProps) {
+const ProductActions = ({ product, region, disabled }: ProductActionsProps) => {
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
@@ -162,3 +160,5 @@ export default function ProductActions({
     </>
   )
 }
+
+export default ProductActions

@@ -3,15 +3,15 @@
 import { clx } from "@medusajs/ui"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-export function Pagination({
+const Pagination = ({
   page,
   totalPages,
-  'data-testid': dataTestid
+  "data-testid": dataTestid,
 }: {
   page: number
   totalPages: number
-  'data-testid'?: string
-}) {
+  "data-testid"?: string
+}) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -49,7 +49,7 @@ export function Pagination({
   const renderEllipsis = (key: string) => (
     <span
       key={key}
-      className="txt-xlarge-plus text-ui-fg-muted items-center cursor-default"
+      className="items-center cursor-default txt-xlarge-plus text-ui-fg-muted"
     >
       ...
     </span>
@@ -108,7 +108,11 @@ export function Pagination({
   // Render the component
   return (
     <div className="flex justify-center w-full mt-12">
-      <div className="flex gap-3 items-end" data-testid={dataTestid}>{renderPageButtons()}</div>
+      <div className="flex items-end gap-3" data-testid={dataTestid}>
+        {renderPageButtons()}
+      </div>
     </div>
   )
 }
+
+export { Pagination }

@@ -6,13 +6,13 @@ import Payment from "@modules/checkout/components/payment"
 import Review from "@modules/checkout/components/review"
 import Shipping from "@modules/checkout/components/shipping"
 
-export default async function CheckoutForm({
+const CheckoutForm = async ({
   cart,
   customer,
 }: {
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
-}) {
+}) => {
   if (!cart) {
     return null
   }
@@ -26,7 +26,7 @@ export default async function CheckoutForm({
 
   return (
     <div>
-      <div className="w-full grid grid-cols-1 gap-y-8">
+      <div className="grid w-full grid-cols-1 gap-y-8">
         <div>
           <Addresses cart={cart} customer={customer} />
         </div>
@@ -46,3 +46,5 @@ export default async function CheckoutForm({
     </div>
   )
 }
+
+export default CheckoutForm

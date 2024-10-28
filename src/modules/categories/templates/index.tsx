@@ -9,7 +9,7 @@ import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 
-export default function CategoryTemplate({
+const CategoryTemplate = ({
   categories,
   sortBy,
   page,
@@ -19,7 +19,7 @@ export default function CategoryTemplate({
   sortBy?: SortOptions
   page?: string
   countryCode: string
-}) {
+}) => {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
@@ -30,12 +30,12 @@ export default function CategoryTemplate({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col py-6 small:flex-row small:items-start content-container"
       data-testid="category-container"
     >
       <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
-        <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+        <div className="flex flex-row gap-4 mb-8 text-2xl-semi">
           {parents &&
             parents.map((parent) => (
               <span key={parent.id} className="text-ui-fg-subtle">
@@ -81,3 +81,5 @@ export default function CategoryTemplate({
     </div>
   )
 }
+
+export default CategoryTemplate

@@ -8,10 +8,10 @@ type RelatedProductsProps = {
   countryCode: string
 }
 
-export default async function RelatedProducts({
+const RelatedProducts = async ({
   product,
   countryCode,
-}: RelatedProductsProps) {
+}: RelatedProductsProps) => {
   const region = await getRegion(countryCode)
 
   if (!region) {
@@ -48,11 +48,11 @@ export default async function RelatedProducts({
 
   return (
     <div className="product-page-constraint">
-      <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-base-regular text-gray-600 mb-6">
+      <div className="flex flex-col items-center mb-16 text-center">
+        <span className="mb-6 text-gray-600 text-base-regular">
           Related products
         </span>
-        <p className="text-2xl-regular text-ui-fg-base max-w-lg">
+        <p className="max-w-lg text-2xl-regular text-ui-fg-base">
           You might also want to check out these products.
         </p>
       </div>
@@ -67,3 +67,5 @@ export default async function RelatedProducts({
     </div>
   )
 }
+
+export default RelatedProducts

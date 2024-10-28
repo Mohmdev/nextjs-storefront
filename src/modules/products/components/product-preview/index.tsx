@@ -7,7 +7,7 @@ import PreviewPrice from "./price"
 import { getProductsById } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
 
-export default async function ProductPreview({
+const ProductPreview = async ({
   product,
   isFeatured,
   region,
@@ -15,7 +15,7 @@ export default async function ProductPreview({
   product: HttpTypes.StoreProduct
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
-}) {
+}) => {
   const [pricedProduct] = await getProductsById({
     ids: [product.id!],
     regionId: region.id,
@@ -38,7 +38,7 @@ export default async function ProductPreview({
           size="full"
           isFeatured={isFeatured}
         />
-        <div className="flex txt-compact-medium mt-4 justify-between">
+        <div className="flex justify-between mt-4 txt-compact-medium">
           <Text className="text-ui-fg-subtle" data-testid="product-title">
             {product.title}
           </Text>
@@ -50,3 +50,5 @@ export default async function ProductPreview({
     </LocalizedClientLink>
   )
 }
+
+export default ProductPreview
